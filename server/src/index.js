@@ -1,39 +1,33 @@
 require('dotenv').config()
-
 const express = require('express')
-const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const cors = require('cors')
-const { success, fail } = require('./routes/handlers/api-utils.js')
-const Recipe = require('./models/Recipe.js')
- 
-const host = process.env.MONGO_HOST
-const port = process.env.MONGO_PORT
-const database = process.env.MONGO_DB
-const collection = process.env.MONGO_COL
+const router = require('./routes')
 
-mongoose.connect(`mongodb://${host}:${port}/${database}`)
-    .then(() => {
+const mongo = {
+    host: process.env.MONGO_HOST,
+    port: process.env.MONGO_PORT,
+    database: process.env.MONGO_DB,
+    collection: process.env.MONGO_COL
+}
 
-        const app = express()
-        const router = express.Router()
+with (mongo) {
+    mongoose.connect(`mongodb://${host}:${port}/${database}`)
+        .then(() => {
 
-        app.use('/api', router)
-        app.use(cors())
-      
-        router.get('/recipes', (req,res) => {
+            const app = express()
 
-            Recipe.find({})
-                .then(recipes => res.json(success(recipes)))
-                .catch(err => res.json(fail(err)))
+            app.use('/api', router)
+
+            app.use(cors())
+
+            const port = process.env.PORT
+
+            app.listen(port, () => console.log(`this server is connect in port ${port}`))
+
         })
-
-        const port = process.env.PORT
-
-        app.listen(port, () => console.log(`this server is connect in port ${port}`))
-
-    })
-    .catch(err => {
-        console.error('App started error:',err.stack);
-        process.exit(1);
-    })
+        .catch(err => {
+            console.error('App started error:', err.stack);
+            process.exit(1);
+        })
+}

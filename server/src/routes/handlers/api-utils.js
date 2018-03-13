@@ -1,4 +1,18 @@
-const success = data => ({status: 'OK', ...data})
-const fail = err => ({status: 'KO', ...err})
+function success (data) {
+    const res = {status: 'OK'}
+
+    if(data) res.data = data
+
+    return res
+}
+
+function fail (err) {
+
+    const res = {status: 'KO'}
+
+    if(err) res.err = err
+
+    return res
+}
 
 module.exports = { success, fail }

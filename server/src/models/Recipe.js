@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
 
-const Recipe = mongoose.model('recipes', { 
-    id_owner: String, 
-    title: String, 
-    category: String, 
-    image: String, 
+const Recipe = mongoose.model('recipes', {
+    id_owner: String,
+    title: String,
+    category: String,
+    image: String,
     video: String,
     ingredients: Array,
     elaboration: Array,
@@ -14,7 +14,7 @@ const Recipe = mongoose.model('recipes', {
     seasson: String,
     observation: String,
     id_followers: Array,
-     
+
 });
 
 module.exports = Recipe
