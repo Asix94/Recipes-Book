@@ -13,3 +13,8 @@
     margin-top: 10px;
     margin-bottom: 20px;
 }
+
+body{
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
