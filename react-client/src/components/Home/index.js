@@ -2,32 +2,10 @@ import React, { Component } from 'react'
 import Carousel from '../Carousel'
 import './css/main.css'
 import RecipeBox from '../RecipeBox'
+import Section from '../Section'
 import api from 'api-client'
 
 class Home extends Component {
-
-    constructor() {
-        super()
-        this.state = {
-            recipes: [],
-            users: []
-        }
-    }
-
-    componentDidMount() {
-
-        api.protocol = 'http';
-        api.host = 'localhost';
-        api.port = '5000';
-
-        api.listRecipe()
-            .then(res => res.data)
-            .then(recipes => this.setState({ recipes }))
-
-        api.listUser()
-            .then(res => res.data)
-            .then(users => this.setState({ users }))
-    }
 
     render() {
         return (
@@ -35,7 +13,7 @@ class Home extends Component {
                 <main>
                     <Carousel />
 
-                    <div class="container">
+                    <div className="container">
 
                         <section>
 
@@ -43,9 +21,9 @@ class Home extends Component {
 
                             <div className="row">
                                 <div className="inside">
-                                    {this.state.recipes.map(recipe => {
+                                    {this.props.recipe.map((recipe,index) => {
                                         return (
-                                            <RecipeBox recipe={recipe} />
+                                            <RecipeBox recipe={recipe} key={index}/>
                                         )
                                     })}
                                 </div>
@@ -58,7 +36,11 @@ class Home extends Component {
                             <h2 className="title-3">Category</h2>
 
                             <div className="row">
-
+                                {this.props.category.map((category,index) => {
+                                    return(
+                                        <Section category={category} key={index}/>
+                                    )
+                                })}
                             </div>
 
                         </section>
@@ -68,9 +50,9 @@ class Home extends Component {
 
                             <div className="row">
                                 <div className="inside">
-                                    {this.state.recipes.map(recipe => {
+                                    {this.props.recipe.map((recipe,index) => {
                                         return(
-                                            <RecipeBox recipe={recipe}/>
+                                            <RecipeBox recipe={recipe} key={index}/>
                                         )
                                     })}
                                 </div>
@@ -82,7 +64,11 @@ class Home extends Component {
                             <h2 className="title-3">Collection</h2>
 
                             <div className="row">
-
+                                {this.props.topic.map((topic,index) => {
+                                    return(
+                                        <Section category={topic} key={index}/>
+                                    )
+                                })}
                             </div>
 
                         </section>

@@ -4,6 +4,7 @@ const api = {
 
     _baseUrl(){
         with(this){
+            //return 'https://radiant-tundra-87476.herokuapp.com/api'
             return `${protocol}://${host}:${port}/api`
         }
     },
@@ -26,7 +27,15 @@ const api = {
 
     listRecipe(){
         return this._call('get', 'recipes')
-    }
+    },
+
+    listCategory(){
+        return this._call('get', 'categories')
+    },
+
+    listTopic(){
+        return this._call('get', 'topics')
+    },
 
 }
 

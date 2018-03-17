@@ -7,8 +7,7 @@ const router = require('./routes')
 const mongo = {
     host: process.env.MONGO_HOST,
     port: process.env.MONGO_PORT,
-    database: process.env.MONGO_DB,
-    collection: process.env.MONGO_COL
+    database: process.env.MONGO_DB
 }
 
 with (mongo) {

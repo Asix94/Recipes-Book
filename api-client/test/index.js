@@ -34,4 +34,28 @@ describe('api', () => {
             })
             .catch(done)
     })
+
+    it('should listCategory', done => {
+        api.listCategory()
+            .then(res => {
+                assert.equal(res.status, 'OK', `results should be ok but got errors ${res.error}`)
+
+                assert(res.data && res.data.length > 0, 'should results data array')
+
+                done()
+            })
+            .catch(done)
+    })
+
+    it('should listTopic', done => {
+        api.listTopic()
+            .then(res =>{
+                assert.equal(res.status, 'OK', `results should be ok but got errors ${res.error}`)
+
+                assert(res.data && res.data.length > 0, 'should results data array')
+
+                done()
+            })
+            .catch(done)
+    })
 })

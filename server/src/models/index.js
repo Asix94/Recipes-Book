@@ -41,15 +41,23 @@ const User = new Schema({
             ref: 'Recipe'
         }
     ]
-}),
+})
 
 const Category = new Schema({
     name: String,
+    logo: String,
+    image: String
+})
+
+const Topic = new Schema({
+    name: String,
+    logo: String,
     image: String
 })
 
 module.exports = {
     Recipe: mongoose.model('Recipe', Recipe),
     User: mongoose.model('User', User),
-    Category: mongoose.model('Category', Category)
+    Category: mongoose.model('Category', Category),
+    Topic: mongoose.model('Topic', Topic)
 }
