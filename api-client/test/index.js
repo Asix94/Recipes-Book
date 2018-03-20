@@ -11,8 +11,20 @@ api.port = API_PORT
 
 describe('api', () => {
 
-    it('should listUser', done => {
-        api.listUser()
+    it('should listUsers', done => {
+        api.listUsers()
+            .then(res => {
+                assert.equal(res.status, 'OK', `results should be ok but got errors ${res.error}`)
+
+                assert(res.data && res.data.length > 0, 'should results data array')
+
+                done()
+            })
+            .catch(done)
+    })
+
+    it('should listRecipes', done => {
+        api.listRecipes()
             .then(res => {
                 assert.equal(res.status, 'OK', `results should be ok but got errors ${res.error}`)
 
@@ -24,7 +36,21 @@ describe('api', () => {
     })
 
     it('should listRecipe', done => {
-        api.listRecipe()
+        api.listRecipe('5aaae4dca8d0fb23644f8db5')
+            .then(res => {
+                assert.equal(res.status, 'OK', `results should be ok but got errors ${res.error}`)
+
+                assert.equal(res.data._id, '5aaae4dca8d0fb23644f8db5')
+
+                assert(res.data, 'should results data array')
+
+                done()
+            })
+            .catch(done)
+    })
+
+    it('should listCategories', done => {
+        api.listCategories()
             .then(res => {
                 assert.equal(res.status, 'OK', `results should be ok but got errors ${res.error}`)
 
@@ -35,20 +61,8 @@ describe('api', () => {
             .catch(done)
     })
 
-    it('should listCategory', done => {
-        api.listCategory()
-            .then(res => {
-                assert.equal(res.status, 'OK', `results should be ok but got errors ${res.error}`)
-
-                assert(res.data && res.data.length > 0, 'should results data array')
-
-                done()
-            })
-            .catch(done)
-    })
-
-    it('should listTopic', done => {
-        api.listTopic()
+    it('should listTopics', done => {
+        api.listTopics()
             .then(res =>{
                 assert.equal(res.status, 'OK', `results should be ok but got errors ${res.error}`)
 

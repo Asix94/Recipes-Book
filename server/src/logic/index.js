@@ -3,20 +3,16 @@ const mongoose = require('mongoose')
 
 module.exports = {
 
-    listUser() {
+    listUsers() {
         return User.find({})
     },
 
-    listRecipe() {
+    listRecipes() {
         return Recipe.find({})
     },
 
-    listCategory(){
-        return Category.find({})
-    },
-
-    listTopic(){
-        return Topic.find({})
+    listRecipe(id){
+        return Recipe.findOne({_id:id})
     },
 
     createRecipe(title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation){
@@ -26,8 +22,16 @@ module.exports = {
         return Recipe.create({owner,title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation})
     },
 
+    listCategories(){
+        return Category.find({})
+    },
+
     createCategory(name,logo,image){
         return Category.create({name,logo,image})
+    },
+
+    listTopics(){
+        return Topic.find({})
     },
 
     createTopic(name,logo,image){

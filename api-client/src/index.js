@@ -21,19 +21,23 @@ const api = {
         return rp(options)
     },
 
-    listUser(){
+    listUsers(){
         return this._call('get', 'users')
     },
 
-    listRecipe(){
+    listRecipes(){
         return this._call('get', 'recipes')
     },
 
-    listCategory(){
+    listRecipe(id){
+        return this._call('get', `recipe/${id}`)
+    },
+
+    listCategories(){
         return this._call('get', 'categories')
     },
 
-    listTopic(){
+    listTopics(){
         return this._call('get', 'topics')
     },
 

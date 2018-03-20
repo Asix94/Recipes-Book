@@ -2,8 +2,7 @@ const { success, fail } = require('./api-utils')
 const logic = require('../../logic')
 
 module.exports = (req,res) => {
-    const { params: { id } } = req
-    logic.listRecipe(id)
-        .then(recipe => res.json(success(recipe)))
+    logic.listRecipes()
+        .then(recipes => res.json(success(recipes)))
         .catch(err => res.json(fail(err)))
 }

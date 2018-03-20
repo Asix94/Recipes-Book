@@ -3,7 +3,6 @@ import Carousel from '../Carousel'
 import './css/main.css'
 import RecipeBox from '../RecipeBox'
 import Section from '../Section'
-import api from 'api-client'
 
 class Home extends Component {
 

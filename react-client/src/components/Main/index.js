@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import './index.css'
 import { Route } from 'react-router-dom';
 import Home from '../Home'
-import Category from '../Category'
-import Collection from '../Collection'
+import CategoryBox from '../CategoryBox'
+import CollectionBox from '../CollectionBox'
+import DetailsRecipe from '../DetailsRecipe'
+import DetailsCategory from '../DetailsCategory'
 import api from 'api-client'
 
 class Main extends Component {
@@ -24,19 +26,19 @@ class Main extends Component {
         api.host = 'localhost';
         api.port = '5000';
 
-        api.listRecipe()
+        api.listRecipes()
             .then(res => res.data)
             .then(recipes => this.setState({ recipes }))
 
-        api.listUser()
+        api.listUsers()
             .then(res => res.data)
             .then(users => this.setState({ users }))
 
-        api.listCategory()
+        api.listCategories()
             .then(res => res.data)
             .then(categories => this.setState({ categories }))
 
-        api.listTopic()
+        api.listTopics()
             .then(res => res.data)
             .then(topics => this.setState({ topics }))
     }
@@ -54,16 +56,26 @@ class Main extends Component {
                 )}/>
 
                 <Route exact path="/category" render={() => (
-                    <Category
-                        category={this.state.categories}
+                    <CategoryBox
+                        categories={this.state.categories}
                     />
                 )}/>
 
                 <Route exact path="/collection" render={() => (
-                    <Collection
-                        topic={this.state.topics}
+                    <CollectionBox
+                        topics={this.state.topics}
                     />
                 )}/>
+
+                <Route path="/recipe/:category/:id" render={routeProps => (
+                    <DetailsRecipe {...routeProps} 
+                />)} />
+
+                <Route path="/category/:category" render={routeProps => (
+                    <DetailsCategory 
+                        {...routeProps}
+                        recipe={this.state.recipes}
+                />)} />
 
             </div>
         );

@@ -1,19 +1,21 @@
-const listUser = require('./listUser')
+const listUsers = require('./listUsers')
 const createUser = require('./createUser')
+const listRecipes = require('./listRecipes')
 const listRecipe = require('./listRecipe')
 const createRecipe = require('./createRecipe')
-const listCategory = require('./listCategory')
+const listCategories = require('./listCategories')
 const createCategory = require('./createCategory')
-const listTopic = require('./listTopic')
+const listTopics = require('./listTopics')
 const createTopic = require('./createTopic')
 
 module.exports = {
-    listUser,
+    listUsers,
     createUser,
+    listRecipes,
     listRecipe,
     createRecipe,
-    listCategory,
+    listCategories,
     createCategory,
-    listTopic,
+    listTopics,
     createTopic
 }

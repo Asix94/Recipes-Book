@@ -2,7 +2,7 @@ const { success, fail } = require('./api-utils')
 const logic = require('../../logic')
 
 module.exports = (req,res) => {
-    logic.listCategory()
-        .then(categories => res.json(success(categories)))
+    logic.listTopics()
+        .then(thopics => res.json(success(thopics)))
         .catch(err => res.json(fail(err)))
 }

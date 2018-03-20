@@ -19,7 +19,7 @@ class Carousel extends Component {
                 <Slider {...settings}>
                     <div>
                         <div className="fondo01 fondo">
-                            <h1>Recipe Book</h1>
+                            <h1 className="title">Recipe Book</h1>
                             <h6>Get a taste of what you can find in our venue</h6>
                             <NavLink to="/" target="_blank" className="square-button">Go to our menu</NavLink>
                         </div>
