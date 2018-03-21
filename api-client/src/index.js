@@ -33,6 +33,18 @@ const api = {
         return this._call('get', `recipe/${id}`)
     },
 
+    createRecipe(title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation){
+        return this._call('post', 'recipe', {title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation})
+    },
+
+    updateRecipe(id,title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation){
+        return this._call('put', `recipe/${id}`, {title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation})
+    },
+
+    removeRecipe(id){
+        return this._call('delete', `recipe/${id}`)
+    },
+
     listCategories(){
         return this._call('get', 'categories')
     },

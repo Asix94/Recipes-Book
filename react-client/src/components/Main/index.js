@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import './index.css'
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Home from '../Home'
 import CategoryBox from '../CategoryBox'
 import CollectionBox from '../CollectionBox'
 import DetailsRecipe from '../DetailsRecipe'
 import DetailsCategory from '../DetailsCategory'
+import FormRecipe from '../FormRecipe'
+import MyRecipes from '../MyRecipes'
 import api from 'api-client'
 
 class Main extends Component {
@@ -43,10 +45,24 @@ class Main extends Component {
             .then(topics => this.setState({ topics }))
     }
 
+    componentDidUpdate(){
+
+        api.protocol = 'http';
+        api.host = 'localhost';
+        api.port = '5000';
+
+        api.listRecipes()
+            .then(res => res.data)
+            .then(recipes => this.setState({ recipes }))
+
+    }
+
     render() {
         return (
             <div>
                 
+                <Switch>
+
                 <Route exact path="/" render={() => (
                     <Home 
                         recipe={this.state.recipes}
@@ -76,6 +92,26 @@ class Main extends Component {
                         {...routeProps}
                         recipe={this.state.recipes}
                 />)} />
+
+                <Route path="/createrecipe" render={() => (
+                    <FormRecipe/>
+                )}/>
+
+                <Route path="/myrecipes" render={() => (
+                    <MyRecipes
+                        recipe={this.state.recipes}
+                    />
+                )}/>
+
+                <Route render={() => (
+                    <Home 
+                        recipe={this.state.recipes}
+                        category={this.state.categories}
+                        topic={this.state.topics}
+                    />
+                )}/>
+
+                </Switch>
 
             </div>
         );

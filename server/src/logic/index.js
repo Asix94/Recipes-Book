@@ -22,6 +22,14 @@ module.exports = {
         return Recipe.create({owner,title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation})
     },
 
+    updateRecipe(id,title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation){
+        return Recipe.findByIdAndUpdate({_id:id},{$set:{title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation}})
+    },
+
+    removeRecipe(id){
+        return Recipe.findByIdAndRemove({_id:id})
+    },
+
     listCategories(){
         return Category.find({})
     },
