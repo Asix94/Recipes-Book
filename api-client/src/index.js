@@ -9,7 +9,7 @@ const api = {
         }
     },
 
-    _call(method, path, body){
+    _call(method, path, body, token){
         const options = {
             method,
             url: `${this._baseUrl()}/${path}`,
@@ -18,11 +18,29 @@ const api = {
 
         if(body) options.body = body
 
+        if (token) options.headers = { authorization: `Bearer ${token}` }
+
         return rp(options)
+    },
+
+    login(username,password){
+        return this._call('post', 'login', {username,password})
     },
 
     listUsers(){
         return this._call('get', 'users')
+    },
+
+    createUser(name,surname,email,username,password){
+        return this._call('post', 'user', {name,surname,email,password})
+    },
+
+    updateUser(token,id,name,surname,email,username,password){
+        return this._call('put', `user/${id}`, {name,surname,email,password})
+    },
+
+    removeUser(token,id){
+        return this._call('delete', `user/${id}`)
     },
 
     listRecipes(){
@@ -33,15 +51,15 @@ const api = {
         return this._call('get', `recipe/${id}`)
     },
 
-    createRecipe(title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation){
+    createRecipe(token,title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation){
         return this._call('post', 'recipe', {title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation})
     },
 
-    updateRecipe(id,title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation){
+    updateRecipe(token,id,title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation){
         return this._call('put', `recipe/${id}`, {title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation})
     },
 
-    removeRecipe(id){
+    removeRecipe(token,id){
         return this._call('delete', `recipe/${id}`)
     },
 

@@ -1,23 +1,30 @@
 const express = require('express')
-const { listUsers, createUser, listRecipes, listRecipe, createRecipe, updateRecipe, removeRecipe, listCategories, createCategory, listTopics, createTopic } = require('./handlers')
+const { login, listUsers, createUser, updateUser, removeUser, listRecipes, listRecipe, createRecipe, updateRecipe, removeRecipe, listCategories, createCategory, listTopics, createTopic } = require('./handlers')
 const bodyParser = require('body-parser')
 const jsonBodyParser = bodyParser.json()
+const jwtValidator = require('./handlers/jwtValidator')
 
 const router = express.Router()
+
+router.post('/login', jsonBodyParser, login)
 
 router.get('/users', listUsers)
 
 router.post('/user', jsonBodyParser, createUser)
 
+router.put('/user/:id', [jwtValidator,jsonBodyParser], updateUser)
+
+router.delete('/user/:id', jwtValidator, removeUser)
+
 router.get('/recipes', listRecipes)
 
 router.get('/recipe/:id', listRecipe)
 
-router.post('/recipe', jsonBodyParser, createRecipe)
+router.post('/recipe', [jwtValidator,jsonBodyParser], createRecipe)
 
-router.put('/recipe/:id', jsonBodyParser, updateRecipe)
+router.put('/recipe/:id', [jwtValidator,jsonBodyParser], updateRecipe)
 
-router.delete('/recipe/:id', removeRecipe)
+router.delete('/recipe/:id', jwtValidator, removeRecipe)
 
 router.get('/categories', listCategories)
 

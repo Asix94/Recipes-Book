@@ -3,8 +3,32 @@ const mongoose = require('mongoose')
 
 module.exports = {
 
+    verify(username,password){
+        return Promise.resolve()
+            .then(() => {
+                return User.findOne({ username, password }, {_id: 1, username: 1})
+            })
+            .then(user => {
+                if(!user) throw Error('username and/or password wrong')
+
+                return user
+            })
+    },
+
     listUsers() {
         return User.find({})
+    },
+
+    createUser(name,surname,email,username,password){
+        return User.create({name,surname,email,username,password})
+    },
+
+    updateUser(id,name,surname,email,username,password){
+        return User.findByIdAndUpdate({_id:id}, {$set:{name,surname,email,username,password}})
+    },
+
+    removeUser(id){
+        return User.findByIdAndRemove({_id:id})
     },
 
     listRecipes() {

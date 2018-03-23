@@ -9,6 +9,7 @@ import DetailsCategory from '../DetailsCategory'
 import FormRecipe from '../FormRecipe'
 import MyRecipes from '../MyRecipes'
 import api from 'api-client'
+import storage from '../services/storage'
 
 class Main extends Component {
 
@@ -45,7 +46,7 @@ class Main extends Component {
             .then(topics => this.setState({ topics }))
     }
 
-    componentDidUpdate(){
+    componentDidUpdate() {
 
         api.protocol = 'http';
         api.host = 'localhost';
@@ -60,56 +61,67 @@ class Main extends Component {
     render() {
         return (
             <div>
-                
+
                 <Switch>
 
-                <Route exact path="/" render={() => (
-                    <Home 
-                        recipe={this.state.recipes}
-                        category={this.state.categories}
-                        topic={this.state.topics}
-                    />
-                )}/>
+                    <Route exact path="/" render={() => (
+                        <Home
+                            recipe={this.state.recipes}
+                            category={this.state.categories}
+                            topic={this.state.topics}
+                        />
+                    )} />
 
-                <Route exact path="/category" render={() => (
-                    <CategoryBox
-                        categories={this.state.categories}
-                    />
-                )}/>
+                    <Route exact path="/category" render={() => (
+                        <CategoryBox
+                            categories={this.state.categories}
+                        />
+                    )} />
 
-                <Route exact path="/collection" render={() => (
-                    <CollectionBox
-                        topics={this.state.topics}
-                    />
-                )}/>
+                    <Route exact path="/collection" render={() => (
+                        <CollectionBox
+                            topics={this.state.topics}
+                        />
+                    )} />
 
-                <Route path="/recipe/:category/:id" render={routeProps => (
-                    <DetailsRecipe {...routeProps} 
-                />)} />
+                    <Route path="/recipe/:category/:id" render={routeProps => (
+                        <DetailsRecipe {...routeProps}
+                        />)} />
 
-                <Route path="/category/:category" render={routeProps => (
-                    <DetailsCategory 
-                        {...routeProps}
-                        recipe={this.state.recipes}
-                />)} />
+                    <Route path="/category/:category" render={routeProps => (
+                        <DetailsCategory
+                            {...routeProps}
+                            recipe={this.state.recipes}
+                        />)} />
 
-                <Route path="/createrecipe" render={() => (
-                    <FormRecipe/>
-                )}/>
+                    {storage.getToken()
+                        ?
+                        <Route path="/createrecipe" render={() => (
+                            <FormRecipe />
+                        )} />
+                        :
+                        <Route path="/" render={() => (
+                            <Home
+                                recipe={this.state.recipes}
+                                category={this.state.categories}
+                                topic={this.state.topics}
+                            />
+                        )} />
+                    }
 
-                <Route path="/myrecipes" render={() => (
-                    <MyRecipes
-                        recipe={this.state.recipes}
-                    />
-                )}/>
+                    <Route path="/myrecipes" render={() => (
+                        <MyRecipes
+                            recipe={this.state.recipes}
+                        />
+                    )} />
 
-                <Route render={() => (
-                    <Home 
-                        recipe={this.state.recipes}
-                        category={this.state.categories}
-                        topic={this.state.topics}
-                    />
-                )}/>
+                    <Route render={() => (
+                        <Home
+                            recipe={this.state.recipes}
+                            category={this.state.categories}
+                            topic={this.state.topics}
+                        />
+                    )} />
 
                 </Switch>
 

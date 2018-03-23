@@ -3,9 +3,9 @@ const logic = require('../../logic')
 
 module.exports = (req, res) => {
 
-    const { body: { name, surname, email, username, password, recipes } } = req
+    const { body: { name, surname, email, username, password } } = req
 
-    logic.createUser(name, surname, email, username, password, recipes)
+    logic.createUser(name, surname, email, username, password)
         .then(id => {
             res.json(success({id}))
         })
