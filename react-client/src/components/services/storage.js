@@ -1,15 +1,15 @@
 const storage = {
 
     getToken(){
-        return localStorage.getItem('token')
+        return sessionStorage.getItem('token')
     },
 
     setToken(value){
-        return localStorage.setItem('token', value)
+        return sessionStorage.setItem('token', value)
     },
 
     removeToken(){
-        return localStorage.removeItem('token')
+        return sessionStorage.removeItem('token')
     }
 }
 

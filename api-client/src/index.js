@@ -1,12 +1,12 @@
+'use strict'
+
 const rp = require('request-promise')
 
 const api = {
 
     _baseUrl(){
-        with(this){
-            //return 'https://radiant-tundra-87476.herokuapp.com/api'
-            return `${protocol}://${host}:${port}/api`
-        }
+        //return 'https://radiant-tundra-87476.herokuapp.com/api'
+        return `${this.protocol}://${this.host}:${this.port}/api`
     },
 
     _call(method, path, body, token){
@@ -31,16 +31,20 @@ const api = {
         return this._call('get', 'users')
     },
 
+    listUser(token){
+        return this._call('get', 'user', undefined, token)
+    },
+
     createUser(name,surname,email,username,password){
         return this._call('post', 'user', {name,surname,email,password})
     },
 
-    updateUser(token,id,name,surname,email,username,password){
-        return this._call('put', `user/${id}`, {name,surname,email,password})
+    updateUser(name,surname,email,username,password,token){
+        return this._call('put', `user/${id}`, {name,surname,email,password}, token)
     },
 
-    removeUser(token,id){
-        return this._call('delete', `user/${id}`)
+    removeUser(token){
+        return this._call('delete', 'user', undefined, token)
     },
 
     listRecipes(){
@@ -51,16 +55,20 @@ const api = {
         return this._call('get', `recipe/${id}`)
     },
 
-    createRecipe(token,title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation){
-        return this._call('post', 'recipe', {title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation})
+    listMyRecipes(token){
+        return this._call('get', `myrecipes`, undefined, token)
     },
 
-    updateRecipe(token,id,title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation){
-        return this._call('put', `recipe/${id}`, {title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation})
+    createRecipe(title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation,token){
+        return this._call('post', 'recipe', {title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation}, token)
     },
 
-    removeRecipe(token,id){
-        return this._call('delete', `recipe/${id}`)
+    updateRecipe(id,title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation,token){
+        return this._call('put', `recipe/${id}`, {title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation}, token)
+    },
+
+    removeRecipe(id,token){
+        return this._call('delete', `recipe/${id}`, undefined, token)
     },
 
     listCategories(){

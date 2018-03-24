@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import api from 'api-client'
 import { withRouter } from 'react-router-dom';
 import './css/main.css'
+import '../services/storage'
+import storage from '../services/storage';
 
 class FormRecipe extends Component {
 
@@ -35,7 +37,7 @@ class FormRecipe extends Component {
         const ingredients = this.state.ingredients.split(',')
         const elaboration = this.state.elaboration.split(',')
 
-        api.createRecipe(this.state.title,this.state.category,this.state.image,this.state.video,ingredients,elaboration,this.state.dificulty,this.state.preparation,this.state.region,this.state.seasson,this.state.observation)
+        api.createRecipe(this.state.title,this.state.category,this.state.image,this.state.video,ingredients,elaboration,this.state.dificulty,this.state.preparation,this.state.region,this.state.seasson,this.state.observation,storage.getToken())
             .then(this.props.history.push('/'))
     }
 

@@ -12,12 +12,19 @@ class Header extends Component {
     constructor() {
         super()
         this.state = {
-            loged: false
+            loged: false,
+            user:[]
         }
     }
 
-    componentDidMount() {
+    componentWillMount() {
         (storage.getToken()) ? this.setState({ loged: true }) : this.setState({ loged: false })
+
+        api.protocol = 'http'
+        api.host = 'localhost'
+        api.port = '5000'
+
+        api.listUser(storage.getToken()).then(res => res.data).then(user => this.setState({user}))
     }
 
     swalLogin() {
@@ -40,6 +47,8 @@ class Header extends Component {
                         this.props.history.push('/')
                         storage.setToken(result.data.token)
                         this.setState({ loged: true })
+                        api.listUser(storage.getToken()).then(res => res.data).then(user => {
+                            this.setState({user})})
 
                     }
                     else {
@@ -81,10 +90,10 @@ class Header extends Component {
                                 </ul>
                                 {(this.state.loged)
                                     ?
-                                    <ul class="nav navbar-nav navbar-right">
-                                        <li class="dropdown">
-                                            <a class="dropdown-toggle" data-toggle="dropdown">Page 1<span class="caret"></span></a>
-                                            <ul class="dropdown-menu">
+                                    <ul className="nav navbar-nav navbar-right">
+                                        <li className="dropdown">
+                                            <a className="dropdown-toggle" data-toggle="dropdown">{(this.state.user) ? this.state.user.username : ''}<span className="caret"></span></a>
+                                            <ul className="dropdown-menu">
                                                 <li><NavLink to="/createrecipe">Create Recipe</NavLink></li>
                                                 <li><NavLink to="/myrecipes">MyRecipes</NavLink></li>
                                                 <li><a href="" onClick={e => { e.preventDefault(); this.logOut() }}><span className="glyphicon glyphicon-user" /> Logout</a></li>

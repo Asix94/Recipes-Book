@@ -1,8 +1,33 @@
 import React, { Component } from 'react'
 import api from 'api-client'
 import swal from 'sweetalert2'
+import storage from '../services/storage'
 
 class MyRecipes extends Component {
+    
+    constructor(){
+        super()
+        this.state = {
+            recipes: []
+        }
+    }
+
+    componentDidMount(){
+
+        api.protocol = 'http'
+        api.host = 'localhost'
+        api.port = '5000'
+
+        api.listMyRecipes(storage.getToken()).then(res => res.data).then(recipes => this.setState({recipes}))
+    }
+
+    componentDidUpdate(){
+        api.protocol = 'http'
+        api.host = 'localhost'
+        api.port = '5000'
+
+        api.listMyRecipes(storage.getToken()).then(res => res.data).then(recipes => this.setState({recipes}))
+    }
 
     updateRecipe(id,title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation) {
 
@@ -10,8 +35,17 @@ class MyRecipes extends Component {
         api.host = 'localhost'
         api.port = '5000'
 
-        api.updateRecipe(id,title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation)
+        api.updateRecipe(id,title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation,storage.getToken())
 
+    }
+
+    removeRecipe(id){
+
+        api.protocol = 'http'
+        api.host = 'localhost'
+        api.port = '5000'
+
+        api.removeRecipe(id,storage.getToken())
     }
 
     swalRecipe(recipe) { 
@@ -81,7 +115,7 @@ class MyRecipes extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.props.recipe.map((recipe, index) => {
+                            {this.state.recipes.map((recipe, index) => {
                                 return (
                                     <tr key={index}>
                                         <td>{recipe.title}</td>

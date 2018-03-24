@@ -1,5 +1,5 @@
 const express = require('express')
-const { login, listUsers, createUser, updateUser, removeUser, listRecipes, listRecipe, createRecipe, updateRecipe, removeRecipe, listCategories, createCategory, listTopics, createTopic } = require('./handlers')
+const { login, listUsers, listUser, createUser, updateUser, removeUser, listRecipes, listRecipe, listMyRecipes, createRecipe, updateRecipe, removeRecipe, listCategories, createCategory, listTopics, createTopic } = require('./handlers')
 const bodyParser = require('body-parser')
 const jsonBodyParser = bodyParser.json()
 const jwtValidator = require('./handlers/jwtValidator')
@@ -10,6 +10,8 @@ router.post('/login', jsonBodyParser, login)
 
 router.get('/users', listUsers)
 
+router.get('/user', jwtValidator, listUser)
+
 router.post('/user', jsonBodyParser, createUser)
 
 router.put('/user/:id', [jwtValidator,jsonBodyParser], updateUser)
@@ -19,6 +21,8 @@ router.delete('/user/:id', jwtValidator, removeUser)
 router.get('/recipes', listRecipes)
 
 router.get('/recipe/:id', listRecipe)
+
+router.get('/myrecipes', jwtValidator, listMyRecipes)
 
 router.post('/recipe', [jwtValidator,jsonBodyParser], createRecipe)
 

@@ -19,6 +19,10 @@ module.exports = {
         return User.find({})
     },
 
+    listUser(id){
+        return User.findOne({_id:id})
+    },
+
     createUser(name,surname,email,username,password){
         return User.create({name,surname,email,username,password})
     },
@@ -39,8 +43,12 @@ module.exports = {
         return Recipe.findOne({_id:id})
     },
 
-    createRecipe(title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation){
-        const owner = mongoose.mongo.ObjectId("5aa8fe111c6b613548ad0224")
+    listMyRecipes(id){
+        return Recipe.find({owner:id})
+    },
+
+    createRecipe(id,title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation){
+        const owner = mongoose.mongo.ObjectId(id)
         const creationDate = new Date()
         
         return Recipe.create({owner,title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation})
