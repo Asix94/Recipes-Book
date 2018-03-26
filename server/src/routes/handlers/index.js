@@ -4,6 +4,7 @@ const listUser = require('./listUser')
 const createUser = require('./createUser')
 const updateUser = require('./updateUser')
 const removeUser = require('./removeUser')
+const searchRecipes = require('./searchRecipes')
 const listRecipes = require('./listRecipes')
 const listRecipe = require('./listRecipe')
 const listMyRecipes = require('./listMyRecipes')
@@ -22,6 +23,7 @@ module.exports = {
     createUser,
     updateUser,
     removeUser,
+    searchRecipes,
     listRecipes,
     listRecipe,
     listMyRecipes,

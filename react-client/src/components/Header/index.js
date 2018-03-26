@@ -13,7 +13,7 @@ class Header extends Component {
         super()
         this.state = {
             loged: false,
-            user:[]
+            user: []
         }
     }
 
@@ -24,7 +24,7 @@ class Header extends Component {
         api.host = 'localhost'
         api.port = '5000'
 
-        api.listUser(storage.getToken()).then(res => res.data).then(user => this.setState({user}))
+        api.listUser(storage.getToken()).then(res => res.data).then(user => this.setState({ user }))
     }
 
     swalLogin() {
@@ -48,7 +48,8 @@ class Header extends Component {
                         storage.setToken(result.data.token)
                         this.setState({ loged: true })
                         api.listUser(storage.getToken()).then(res => res.data).then(user => {
-                            this.setState({user})})
+                            this.setState({ user })
+                        })
 
                     }
                     else {
@@ -59,6 +60,51 @@ class Header extends Component {
             .catch(err => {
                 console.log(err.message)
             })
+    }
+
+    swalRegister() {
+        swal({
+            title: 'Register',
+            html:
+                "<input id='name' class='swal2-input' placeholder='Name' type='text'>" +
+                "<input id='surname' class='swal2-input' placeholder='Surname' type='text'>" +
+                "<input id='email' class='swal2-input' placeholder='Email' type='email'>" +
+                "<input id='username' class='swal2-input' placeholder='Username' type='text'>" +
+                "<input id='password' class='swal2-input' placeholder='Password' type='password'>",
+            focusConfirm: false,
+            preConfirm: () => {
+                return {
+                    name: document.getElementById('name').value,
+                    surname: document.getElementById('surname').value,
+                    email: document.getElementById('email').value,
+                    username: document.getElementById('username').value,
+                    password: document.getElementById('password').value
+                }
+            }
+        }).then(res => {
+            api.createUser(res.value.name, res.value.surname, res.value.email, res.value.username, res.value.password)
+                .then(res => {
+                    if (res.status === 'OK') {
+                        api.login(res.data.id.username, res.data.id.password)
+                            .then(res => {
+                                if (res.status === 'OK') {
+                                    this.props.history.push('/')
+                                    storage.setToken(res.data.token)
+                                    this.setState({ loged: true })
+                                    api.listUser(storage.getToken()).then(res => res.data).then(user => {
+                                        this.setState({ user })
+                                    })
+                                }
+                                else {
+                                    console.log('Error, username and/or password wrong')
+                                }
+                            })
+                    }
+                    else {
+                        console.log('User already exist')
+                    }
+                })
+        })
     }
 
     logOut() {
@@ -86,7 +132,7 @@ class Header extends Component {
                                 <ul className="nav navbar-nav">
                                     <li><NavLink to="/">Home</NavLink></li>
                                     <li><NavLink to="/category">Category</NavLink></li>
-                                    <li><NavLink to="/collection">Collection</NavLink></li>
+                                    {/*<li><NavLink to="/collection">Collection</NavLink></li>*/}
                                 </ul>
                                 {(this.state.loged)
                                     ?
@@ -102,7 +148,7 @@ class Header extends Component {
                                     </ul>
                                     :
                                     <ul className="nav navbar-nav navbar-right">
-                                        <li><a href=""><span className="glyphicon glyphicon-user" /> Sign Up</a></li>
+                                        <li><a href="" onClick={e => { e.preventDefault(); this.swalRegister() }}><span className="glyphicon glyphicon-user" /> Sign Up</a></li>
                                         <li><a href="" onClick={e => { e.preventDefault(); this.swalLogin() }}><span className="glyphicon glyphicon-log-in" /> Login</a></li>
                                     </ul>
                                 }

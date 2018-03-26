@@ -26,10 +26,9 @@ class CategoryBox extends Component{
                                 <div className="inside">
                                     {this.props.categories.map((category,index) => {
                                         return(
-                                            <div className="col-md-4 col-sm-6 recipe" key={index}>
+                                            <div className="col-md-4 col-sm-6 categories" key={index} onClick={(e) => { e.preventDefault(); this.idItem(category.name) }}>
                                                 <img src={category.image} alt={category.name} className="img-recipe"/>
                                                 <h2 align="center">{category.name}</h2>
-                                                <button className="btn my-2 my-sm-0" onClick={(e) => { e.preventDefault(); this.idItem(category.name) }}>Info</button>
                                             </div>
                                         )
                                     })}

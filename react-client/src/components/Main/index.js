@@ -8,6 +8,7 @@ import DetailsRecipe from '../DetailsRecipe'
 import DetailsCategory from '../DetailsCategory'
 import FormRecipe from '../FormRecipe'
 import MyRecipes from '../MyRecipes'
+import Results from '../Results'
 import api from 'api-client'
 import storage from '../services/storage'
 
@@ -109,19 +110,24 @@ class Main extends Component {
                         )} />
                     }
 
-                    <Route path="/myrecipes" render={() => (
-                        <MyRecipes
-                            recipe={this.state.recipes}
-                        />
-                    )} />
-
-                    <Route render={() => (
+                    {storage.getToken()
+                        ?
+                        <Route path="/myrecipes" render={() => (
+                            <MyRecipes
+                                recipe={this.state.recipes}
+                            />
+                        )} />
+                        :
                         <Home
                             recipe={this.state.recipes}
                             category={this.state.categories}
                             topic={this.state.topics}
                         />
-                    )} />
+                    }
+
+                    <Route path="/search/:query" render={routeProps => (
+                        <Results {...routeProps}
+                    />)} />
 
                 </Switch>
 

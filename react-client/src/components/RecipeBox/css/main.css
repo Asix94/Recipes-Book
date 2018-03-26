@@ -1,5 +1,6 @@
 .recipe{
     height: 370px;
+    cursor: pointer;
 }
 
 .img-recipe{

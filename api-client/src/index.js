@@ -36,7 +36,7 @@ const api = {
     },
 
     createUser(name,surname,email,username,password){
-        return this._call('post', 'user', {name,surname,email,password})
+        return this._call('post', 'user', {name,surname,email,username,password})
     },
 
     updateUser(name,surname,email,username,password,token){
@@ -45,6 +45,10 @@ const api = {
 
     removeUser(token){
         return this._call('delete', 'user', undefined, token)
+    },
+
+    searchRecipes(query){
+        return this._call('get', `search/${query}`)
     },
 
     listRecipes(){

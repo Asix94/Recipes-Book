@@ -47,6 +47,11 @@ module.exports = {
         return Recipe.find({owner:id})
     },
 
+    searchRecipes(query){
+        const regex = new RegExp(query, 'i')
+        return Recipe.find({$or:[{title:{$regex: regex}}]})
+    },
+
     createRecipe(id,title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation){
         const owner = mongoose.mongo.ObjectId(id)
         const creationDate = new Date()

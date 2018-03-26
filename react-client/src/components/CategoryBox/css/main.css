@@ -20,6 +20,7 @@
     margin-bottom: 20px;
 }
 
-.recipe{
-    height: 370px;
+.categories{
+    height: 300px;
+    cursor: pointer;
 }

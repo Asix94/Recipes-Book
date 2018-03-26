@@ -37,7 +37,7 @@ class FormRecipe extends Component {
         const ingredients = this.state.ingredients.split(',')
         const elaboration = this.state.elaboration.split(',')
 
-        api.createRecipe(this.state.title,this.state.category,this.state.image,this.state.video,ingredients,elaboration,this.state.dificulty,this.state.preparation,this.state.region,this.state.seasson,this.state.observation,storage.getToken())
+        api.createRecipe(this.state.title, this.state.category, this.state.image, this.state.video, ingredients, elaboration, this.state.dificulty, this.state.preparation, this.state.region, this.state.seasson, this.state.observation, storage.getToken())
             .then(this.props.history.push('/'))
     }
 
@@ -52,21 +52,63 @@ class FormRecipe extends Component {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="col-md-6">
-                                <label>Title</label> 
-                                <input type="text" className="form-control" name="title" id="title" placeholder="title" required onChange={this.InputValue} value={this.state.title}/>
+                                <label>Title</label>
+                                <input type="text" className="form-control" name="title" id="title" placeholder="title" required onChange={this.InputValue} value={this.state.title} />
                                 <label>Category</label>
-                                <input type="text" className="form-control" name="category" id="category" placeholder="category" required onChange={this.InputValue} />
+                                <select name="category" onChange={this.InputValue}>
+                                    <option value="">Categoría</option>
+                                    <option value="Ensaladas">Ensaladas</option>
+                                    <option value="Verduras">Verduras</option>
+                                    <option value="Legumbres">Legumbres</option>
+                                    <option value="Arroces">Arroces</option>
+                                    <option value="Pastas y Pizzas">Pastas y Pizzas</option>
+                                    <option value="Sopas, Purés y Cremas">Sopas, Purés y Cremas</option>
+                                    <option value="Huevos">Huevos</option>
+                                    <option value="Tapas y Pintxos">Tapas y Pintxos</option>
+                                    <option value="Carnes">Carnes</option>
+                                    <option value="Pescados y mariscos">Pescados y mariscos</option>
+                                    <option value="Postres">Postres</option>
+                                    <option value="Bebidas y Cocteles">Bebidas y Cocteles</option>
+                                    <option value="Salsas y bases">Salsas y bases</option>
+                                    <option value="Otros">Otros</option>
+                                </select>
                                 <div className="col-md-6">
                                     <label>Dificulty</label>
-                                    <input type="text" className="form-control" name="dificulty" id="dificulty" placeholder="dificulty" required onChange={this.InputValue} />
+                                    <select name="dificulty" onChange={this.InputValue}>
+                                        <option value="">Dificulty</option>
+                                        <option value="facil">Facil</option>
+                                        <option value="intermedia">Intermedia</option>
+                                        <option value="dificil">Dificil</option>
+                                        <option value="extreme">Extreme</option>
+                                    </select>
                                     <label>Preparation</label>
-                                    <input type="text" className="form-control" name="preparation" id="preparation" placeholder="preparation" required onChange={this.InputValue} />
+                                    <select name="preparation" onChange={this.InputValue}>
+                                        <option value="">Preparation</option>
+                                        <option value="Menos de 15 minutos">Menos de 15 minutos</option>
+                                        <option value="Entre 15 y 30 minutos">Entre 15 y 30 minutos</option>
+                                        <option value="Entre 30 minutos y 1 hora">Entre 30 minutos y 1 hora</option>
+                                        <option value="Más de 1 hora">Más de 1 hora</option>
+                                    </select>
                                 </div>
                                 <div className="col-md-6">
                                     <label>Seasson</label>
-                                    <input type="text" className="form-control" name="seasson" id="seasson" placeholder="seasson" required onChange={this.InputValue} />
+                                    <select name="seasson" onChange={this.InputValue}>
+                                        <option value="">Temporada</option>
+                                        <option value="Primavera">Primavera</option>
+                                        <option value="Verano">Verano</option>
+                                        <option value="Otoño">Otoño</option>
+                                        <option value="Invierno">Invierno</option>
+                                    </select>
                                     <label>Region</label>
-                                    <input type="text" className="form-control" name="region" id="region" placeholder="region" required onChange={this.InputValue} />
+                                    <select name="region" onChange={this.InputValue}>
+                                        <option value="">Región</option>
+                                        <option value="Mediterránea">Mediterránea</option>
+                                        <option value="Latina">Latina</option>
+                                        <option value="Asiática">Asiática</option>
+                                        <option value="Africana">Africana</option>
+                                        <option value="Árabe">Árabe</option>
+                                        <option value="Anglosajona">Anglosajona</option>
+                                    </select>
                                 </div>
                             </div>
                             <div className="col-md-6">

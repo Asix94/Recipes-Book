@@ -59,7 +59,7 @@ class Home extends Component {
 
                         </section>
 
-                        <section>
+                        {/*<section>
                             <h2 className="title-3">Collection</h2>
 
                             <div className="row">
@@ -70,7 +70,7 @@ class Home extends Component {
                                 })}
                             </div>
 
-                        </section>
+                            </section>*/}
                         
                     </div>
 

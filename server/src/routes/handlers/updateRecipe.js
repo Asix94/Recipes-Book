@@ -12,4 +12,4 @@ module.exports = (req,res) => {
         .catch(err => {
             res.json(fail(err.message))
         })
-}
+} 
