@@ -100,10 +100,13 @@ class Header extends Component {
                                 }
                             })
                     }
-                    else {
-                        console.log('User already exist')
+                    else if(res.status === 'KO') {
+                        console.log(res.err)
                     }
                 })
+        })
+        .catch(err => {
+            console.log(err.message)
         })
     }
 

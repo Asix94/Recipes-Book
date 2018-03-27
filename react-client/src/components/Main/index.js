@@ -94,6 +94,10 @@ class Main extends Component {
                             {...routeProps}
                             recipe={this.state.recipes}
                         />)} />
+                    
+                    <Route path="/search/:query" render={routeProps => (
+                        <Results {...routeProps}
+                    />)} />
 
                     {storage.getToken()
                         ?
@@ -124,10 +128,6 @@ class Main extends Component {
                             topic={this.state.topics}
                         />
                     }
-
-                    <Route path="/search/:query" render={routeProps => (
-                        <Results {...routeProps}
-                    />)} />
 
                 </Switch>
 
