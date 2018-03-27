@@ -67,6 +67,14 @@ module.exports = {
         return Recipe.findByIdAndRemove({_id:id})
     },
 
+    followRecipe(idRecipe,idFollow){
+        return User.findByIdAndUpdate({ _id : idFollow },{ $push: { recipesFollowing : idRecipe }})
+    },
+    
+    unfollowRecipe(idRecipe,idFollow){
+        return User.findByIdAndUpdate({ _id : idFollow }, { $pull: { recipesFollowing: idRecipe }})
+    },
+
     listCategories(){
         return Category.find({})
     },

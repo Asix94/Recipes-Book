@@ -28,9 +28,7 @@ class FormRecipe extends Component {
     }
 
     InputValue = (e) => {
-
         let prop = e.target.name
-        console.log(e.target.value)
         this.setState({ [prop]: e.target.value })
     }
 

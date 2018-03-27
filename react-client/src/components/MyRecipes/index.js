@@ -53,15 +53,25 @@ class MyRecipes extends Component {
          swal({
             title: 'Update Recipe',
             html:
+                `<label>Title</label>` +
                 `<input id="title" class="swal2-input" value="${recipe.title}">` +
+                `<label>Category</label>` +
                 `<input id="category" class="swal2-input" value="${recipe.category}">` +
+                `<label>Dificulty</label>` +
                 `<input id="dificulty" class="swal2-input" value="${recipe.dificulty}">` +
+                `<label>Preparation</label>` +
                 `<input id="preparation" class="swal2-input" value="${recipe.preparation}">` +
+                `<label>Seasson</label>` +
                 `<input id="seasson" class="swal2-input" value="${recipe.seasson}">` +
+                `<label>Region</label>` +
                 `<input id="region" class="swal2-input" value="${recipe.region}">` +
+                `<label>Image</label>` +
                 `<input id="image" class="swal2-input" value="${recipe.image}">` +
+                `<label>Observation</label>` +
                 `<input id="observation" class="swal2-input" value="${recipe.observation}">` +
+                `<label>Ingredients</label>` +
                 `<input id="ingredients" class="swal2-input" value="${recipe.ingredients}">` +
+                `<label>Elaboration</label>` +
                 `<input id="elaboration" class="swal2-input" value="${recipe.elaboration}">`,
             focusConfirm: false,
             preConfirm: () => {

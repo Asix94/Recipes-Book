@@ -1,3 +1,12 @@
 section{
     margin-top: 70px;
 }
+
+.image{
+    width: 100%;
+    height: 400px;
+}
+
+.mgb10{
+    margin-bottom: 10px;
+}

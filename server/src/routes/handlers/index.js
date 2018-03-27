@@ -11,6 +11,8 @@ const listMyRecipes = require('./listMyRecipes')
 const createRecipe = require('./createRecipe')
 const updateRecipe = require('./updateRecipe')
 const removeRecipe = require('./removeRecipe')
+const followRecipe = require('./followRecipe')
+const unfollowRecipe = require('./unfollowRecipe')
 const listCategories = require('./listCategories')
 const createCategory = require('./createCategory')
 const listTopics = require('./listTopics')
@@ -30,6 +32,8 @@ module.exports = {
     createRecipe,
     updateRecipe,
     removeRecipe,
+    followRecipe,
+    unfollowRecipe,
     listCategories,
     createCategory,
     listTopics,

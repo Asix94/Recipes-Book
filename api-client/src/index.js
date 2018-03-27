@@ -75,6 +75,14 @@ const api = {
         return this._call('delete', `recipe/${id}`, undefined, token)
     },
 
+    followRecipe(id,token){
+        return this._call('put', `recipe/follow/${id}`, undefined, token)
+    },
+
+    unfollowRecipe(id,token){
+        return this._call('put', `recipe/unfollow/${id}`, undefined, token)
+    },
+
     listCategories(){
         return this._call('get', 'categories')
     },
