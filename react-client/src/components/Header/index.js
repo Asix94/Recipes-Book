@@ -145,6 +145,7 @@ class Header extends Component {
                                             <ul className="dropdown-menu">
                                                 <li><NavLink to="/createrecipe">Create Recipe</NavLink></li>
                                                 <li><NavLink to="/myrecipes">MyRecipes</NavLink></li>
+                                                <li><NavLink to="/myfollowrecipes">MyFollowRecipes</NavLink></li>
                                                 <li><a href="" onClick={e => { e.preventDefault(); this.logOut() }}><span className="glyphicon glyphicon-user" /> Logout</a></li>
                                             </ul>
                                         </li>

@@ -47,6 +47,10 @@ module.exports = {
         return Recipe.find({owner:id})
     },
 
+    listMyFollowRecipes(id){
+        return User.findOne({_id:id}).populate('recipesFollowing')
+    },
+
     searchRecipes(query){
         const regex = new RegExp(query, 'i')
         return Recipe.find({$or:[{title:{$regex: regex}}]})

@@ -11,6 +11,7 @@ class DetailRecipe extends Component {
         this.state = {
             recipe: [],
             loged: false,
+            follow: true,
             user: []
         }
     }
@@ -23,27 +24,43 @@ class DetailRecipe extends Component {
         api.host = 'localhost';
         api.port = '5000';
 
+        api.listUser(storage.getToken()).then(res => res.data).then(user => this.setState({ user }))
         api.listRecipe(this.props.match.params.id)
             .then(res => res.data)
             .then(recipe => this.setState({ recipe }))
-        
-        api.listUser(storage.getToken()).then(res => res.data).then(user => this.setState({ user }))
     }
 
-    followRecipe(id){
+    componentWillReceiveProps(){
+        this.followAndUnfollow()
+    }
+
+    followRecipe(id) {
         api.protocol = 'http';
         api.host = 'localhost';
         api.port = '5000';
 
-        api.followRecipe(id,storage.getToken())
+        api.followRecipe(id, storage.getToken()).then(this.followAndUnfollow())
     }
 
-    unfollowRecipe(id){
+    unfollowRecipe(id) {
         api.protocol = 'http';
         api.host = 'localhost';
         api.port = '5000';
 
-        api.unfollowRecipe(id,storage.getToken())
+        api.unfollowRecipe(id, storage.getToken()).then(this.followAndUnfollow())
+    }
+
+    followAndUnfollow() {
+
+        if (this.state.user.recipesFollowing) {
+            const owner = (this.state.user.recipesFollowing.findIndex(recipe => recipe === this.state.recipe._id))
+            if (owner === 0) {
+                this.setState({ follow: false })
+            }
+            else {
+                this.setState({ follow: true })
+            }
+        }
     }
 
     render() {
@@ -53,14 +70,15 @@ class DetailRecipe extends Component {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="col-md-6">
-                                {(this.state.loged && this.state.user._id !== this.state.recipe.owner)
-                                ? 
-                                <div>
-                                    <button className="btn btn-lg primary btn-success" onClick={e => { e.preventDefault(); this.followRecipe(this.state.recipe._id) }}>Favorites</button>
-                                    <button className="btn btn-lg primary btn-danger" onClick={e => { e.preventDefault(); this.unfollowRecipe(this.state.recipe._id) }}>No Favorites</button>
-                                </div>
-                                :
-                                ''
+                                {(storage.getToken() && this.state.recipe.owner !== this.state.user._id)
+                                    ?
+                                    (this.state.follow)
+                                        ?
+                                        <button className="btn btn-lg primary btn-success" onClick={e => { e.preventDefault(); this.followRecipe(this.state.recipe._id) }}>Favorites</button>
+                                        :
+                                        <button className="btn btn-lg primary btn-danger" onClick={e => { e.preventDefault(); this.unfollowRecipe(this.state.recipe._id) }}>No Favorites</button>
+                                    :
+                                    ""
                                 }
                                 <h1 align="center" className="mgb10">{this.state.recipe.title}</h1>
                                 <h2 align="center" className="mgb">{this.state.recipe.category}</h2>
@@ -82,7 +100,7 @@ class DetailRecipe extends Component {
                                 </div>
                             </div>
                             <div className="col-md-6">
-                                <img className="image" src={this.state.recipe.image} alt={this.state.recipe.title}/>
+                                <img className="image" src={this.state.recipe.image} alt={this.state.recipe.title} />
                             </div>
                         </div>
                         <div className="col-md-12">

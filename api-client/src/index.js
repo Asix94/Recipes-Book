@@ -63,6 +63,10 @@ const api = {
         return this._call('get', `myrecipes`, undefined, token)
     },
 
+    listMyFollowRecipes(token){
+        return this._call('get', `myfollowrecipes`, undefined, token)
+    },
+
     createRecipe(title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation,token){
         return this._call('post', 'recipe', {title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation}, token)
     },

@@ -8,6 +8,7 @@ import DetailsRecipe from '../DetailsRecipe'
 import DetailsCategory from '../DetailsCategory'
 import FormRecipe from '../FormRecipe'
 import MyRecipes from '../MyRecipes'
+import MyFollowRecipes from '../MyFollowRecipes'
 import Results from '../Results'
 import api from 'api-client'
 import storage from '../services/storage'
@@ -123,6 +124,19 @@ class Main extends Component {
                         )} />
                         :
                         <Home
+                            recipe={this.state.recipes}
+                            category={this.state.categories}
+                            topic={this.state.topics}
+                        />
+                    }
+
+                    {storage.getToken()
+                        ?
+                        <Route path="/myfollowrecipes" render={() => (
+                            <MyFollowRecipes/>
+                        )} />
+                        :
+                        <Home 
                             recipe={this.state.recipes}
                             category={this.state.categories}
                             topic={this.state.topics}
