@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import api from 'api-client'
+import api from '../services/api'
 import storage from '../services/storage'
+import { NavLink } from 'react-router-dom'
 
 class MyFollowRecipes extends Component{
 
@@ -12,10 +13,6 @@ class MyFollowRecipes extends Component{
     }
 
     componentDidMount(){
-
-        api.protocol = 'http'
-        api.host = 'localhost'
-        api.port = '5000'
 
         api.listMyFollowRecipes(storage.getToken()).then(res => res.data).then(res => res.recipesFollowing).then(recipes => this.setState({recipes}))
     }
@@ -37,7 +34,7 @@ class MyFollowRecipes extends Component{
                             {this.state.recipes.map((recipe, index) => {
                                 return (
                                     <tr key={index}>
-                                        <td>{recipe.title}</td>
+                                        <td><NavLink to={"/recipe/" + recipe.category + "/" + recipe._id}>{recipe.title}</NavLink></td>
                                         <td>{recipe.category}</td>
                                         <td>{recipe.dificulty}</td>
                                     </tr>

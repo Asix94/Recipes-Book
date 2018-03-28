@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import api from 'api-client'
+import api from '../services/api'
 import swal from 'sweetalert2'
 import storage from '../services/storage'
+import { NavLink } from 'react-router-dom'
 
 class MyRecipes extends Component {
     
@@ -14,36 +15,22 @@ class MyRecipes extends Component {
 
     componentDidMount(){
 
-        api.protocol = 'http'
-        api.host = 'localhost'
-        api.port = '5000'
-
+        window.scrollTo(0, 0)
         api.listMyRecipes(storage.getToken()).then(res => res.data).then(recipes => this.setState({recipes}))
     }
 
     componentDidUpdate(){
-        api.protocol = 'http'
-        api.host = 'localhost'
-        api.port = '5000'
 
         api.listMyRecipes(storage.getToken()).then(res => res.data).then(recipes => this.setState({recipes}))
     }
 
     updateRecipe(id,title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation) {
 
-        api.protocol = 'http'
-        api.host = 'localhost'
-        api.port = '5000'
-
         api.updateRecipe(id,title,category,image,video,ingredients,elaboration,dificulty,preparation,region,seasson,observation,storage.getToken())
 
     }
 
     removeRecipe(id){
-
-        api.protocol = 'http'
-        api.host = 'localhost'
-        api.port = '5000'
 
         api.removeRecipe(id,storage.getToken())
     }
@@ -128,7 +115,7 @@ class MyRecipes extends Component {
                             {this.state.recipes.map((recipe, index) => {
                                 return (
                                     <tr key={index}>
-                                        <td>{recipe.title}</td>
+                                        <td><NavLink to={"/recipe/" + recipe.category + "/" + recipe._id}>{recipe.title}</NavLink></td>
                                         <td>{recipe.category}</td>
                                         <td>{recipe.dificulty}</td>
                                         <td><button className="btn" type="submit" onClick={e => { e.preventDefault(); this.swalRecipe(recipe) }}>Update</button></td>

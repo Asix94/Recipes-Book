@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import api from 'api-client'
+import api from '../services/api'
 import { withRouter } from 'react-router-dom';
 import './css/main.css'
 import '../services/storage'
@@ -33,9 +33,6 @@ class FormRecipe extends Component {
     }
 
     createRecipe = () => {
-        api.protocol = 'http'
-        api.host = 'localhost'
-        api.port = '5000'
 
         const ingredients = []
 

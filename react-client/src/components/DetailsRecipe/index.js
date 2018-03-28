@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import api from 'api-client'
+import api from '../services/api'
 import './css/main.css'
 import '../services/storage'
 import storage from '../services/storage';
@@ -18,11 +18,9 @@ class DetailRecipe extends Component {
 
     componentDidMount() {
 
+        window.scrollTo(0, 0)
+        
         (storage.getToken()) ? this.setState({ loged: true }) : this.setState({ loged: false })
-
-        api.protocol = 'http';
-        api.host = 'localhost';
-        api.port = '5000';
 
         api.listUser(storage.getToken()).then(res => res.data).then(user => this.setState({ user }))
         api.listRecipe(this.props.match.params.id)
@@ -35,26 +33,20 @@ class DetailRecipe extends Component {
     }
 
     followRecipe(id) {
-        api.protocol = 'http';
-        api.host = 'localhost';
-        api.port = '5000';
 
-        api.followRecipe(id, storage.getToken()).then(this.followAndUnfollow())
+        api.followRecipe(id, storage.getToken()).then(this.followAndUnfollow()).then(window.location.reload())
     }
 
     unfollowRecipe(id) {
-        api.protocol = 'http';
-        api.host = 'localhost';
-        api.port = '5000';
 
-        api.unfollowRecipe(id, storage.getToken()).then(this.followAndUnfollow())
+        api.unfollowRecipe(id, storage.getToken()).then(this.followAndUnfollow()).then(window.location.reload())
     }
 
     followAndUnfollow() {
 
         if (this.state.user.recipesFollowing) {
-            const owner = (this.state.user.recipesFollowing.findIndex(recipe => recipe === this.state.recipe._id))
-            if (owner === 0) {
+            const owner = (this.state.user.recipesFollowing.indexOf(this.state.recipe._id))
+            if (owner !== -1) {
                 this.setState({ follow: false })
             }
             else {

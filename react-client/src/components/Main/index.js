@@ -10,7 +10,7 @@ import FormRecipe from '../FormRecipe'
 import MyRecipes from '../MyRecipes'
 import MyFollowRecipes from '../MyFollowRecipes'
 import Results from '../Results'
-import api from 'api-client'
+import api from '../services/api'
 import storage from '../services/storage'
 
 class Main extends Component {
@@ -26,10 +26,6 @@ class Main extends Component {
     }
 
     componentDidMount() {
-
-        api.protocol = 'http';
-        api.host = 'localhost';
-        api.port = '5000';
 
         api.listRecipes()
             .then(res => res.data)
@@ -49,10 +45,6 @@ class Main extends Component {
     }
 
     componentDidUpdate() {
-
-        api.protocol = 'http';
-        api.host = 'localhost';
-        api.port = '5000';
 
         api.listRecipes()
             .then(res => res.data)

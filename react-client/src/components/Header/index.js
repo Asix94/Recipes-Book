@@ -4,7 +4,7 @@ import logo from '../../logo.png'
 import Search from '../Search'
 import { NavLink, withRouter } from 'react-router-dom'
 import swal from 'sweetalert2'
-import api from 'api-client'
+import api from '../services/api'
 import storage from '../services/storage.js'
 
 class Header extends Component {
@@ -19,10 +19,6 @@ class Header extends Component {
 
     componentWillMount() {
         (storage.getToken()) ? this.setState({ loged: true }) : this.setState({ loged: false })
-
-        api.protocol = 'http'
-        api.host = 'localhost'
-        api.port = '5000'
 
         api.listUser(storage.getToken()).then(res => res.data).then(user => this.setState({ user }))
     }

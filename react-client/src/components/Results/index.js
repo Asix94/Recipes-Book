@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import api from 'api-client'
+import api from '../services/api'
 import RecipeBox from '../RecipeBox'
 
 class Results extends Component {
@@ -12,17 +12,12 @@ class Results extends Component {
     }
 
     componentDidMount() {
-        api.protocol = 'http'
-        api.host = 'localhost'
-        api.port = '5000'
 
+        window.scrollTo(0, 0)
         api.searchRecipes(this.props.match.params.query).then(res => res.data).then(search => this.setState({ search }))
     }
 
     componentWillReceiveProps(props) {
-        api.protocol = 'http'
-        api.host = 'localhost'
-        api.port = '5000'
 
         api.searchRecipes(this.props.match.params.query).then(res => res.data).then(search => this.setState({ search }))
     }
