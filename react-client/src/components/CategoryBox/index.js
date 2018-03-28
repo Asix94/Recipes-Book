@@ -20,8 +20,8 @@ class CategoryBox extends Component{
             <div>
                 <main>
                     <section>
-                        <div className="container">
-                            <h2 className="title-3">Category</h2>
+                        <div className="container mrg130">
+                            <h2 className="title-3">Categorias</h2>
                             <div className="row">
                                 <div className="inside">
                                     {this.props.categories.map((category,index) => {

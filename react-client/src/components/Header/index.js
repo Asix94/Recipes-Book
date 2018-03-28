@@ -114,7 +114,6 @@ class Header extends Component {
 
     render() {
         return (
-            <div>
                 <header>
                     <nav className="navbar navbar-inverse navbar-fixed-top color-header">
                         <div className="container-fluid">
@@ -130,7 +129,7 @@ class Header extends Component {
                             <div className="collapse navbar-collapse" id="myNavbar">
                                 <ul className="nav navbar-nav">
                                     <li><NavLink to="/">Home</NavLink></li>
-                                    <li><NavLink to="/category">Category</NavLink></li>
+                                    <li><NavLink to="/category">Categorias</NavLink></li>
                                     {/*<li><NavLink to="/collection">Collection</NavLink></li>*/}
                                 </ul>
                                 {(this.state.loged)
@@ -139,16 +138,16 @@ class Header extends Component {
                                         <li className="dropdown">
                                             <a className="dropdown-toggle" data-toggle="dropdown">{(this.state.user) ? this.state.user.username : ''}<span className="caret"></span></a>
                                             <ul className="dropdown-menu">
-                                                <li><NavLink to="/createrecipe">Create Recipe</NavLink></li>
-                                                <li><NavLink to="/myrecipes">MyRecipes</NavLink></li>
-                                                <li><NavLink to="/myfollowrecipes">MyFollowRecipes</NavLink></li>
-                                                <li><a href="" onClick={e => { e.preventDefault(); this.logOut() }}><span className="glyphicon glyphicon-user" /> Logout</a></li>
+                                                <li><NavLink to="/createrecipe">Crea Recetas</NavLink></li>
+                                                <li><NavLink to="/myrecipes">Mis Recetas</NavLink></li>
+                                                <li><NavLink to="/myfollowrecipes">Mis Recetas Favoritas</NavLink></li>
+                                                <li><a href="" onClick={e => { e.preventDefault(); this.logOut() }}><span className="glyphicon glyphicon-user" /> Salir</a></li>
                                             </ul>
                                         </li>
                                     </ul>
                                     :
                                     <ul className="nav navbar-nav navbar-right">
-                                        <li><a href="" onClick={e => { e.preventDefault(); this.swalRegister() }}><span className="glyphicon glyphicon-user" /> Sign Up</a></li>
+                                        <li><a href="" onClick={e => { e.preventDefault(); this.swalRegister() }}><span className="glyphicon glyphicon-user" /> Registrate</a></li>
                                         <li><a href="" onClick={e => { e.preventDefault(); this.swalLogin() }}><span className="glyphicon glyphicon-log-in" /> Login</a></li>
                                     </ul>
                                 }
@@ -156,8 +155,6 @@ class Header extends Component {
                         </div>
                     </nav>
                 </header>
-
-            </div>
         );
     }
 }

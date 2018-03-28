@@ -1,6 +1,9 @@
 .footer{
     background-color: #2646ea;
     color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 .logo-footer{

@@ -20,22 +20,22 @@ class Carousel extends Component {
                     <div>
                         <div className="fondo01 fondo">
                             <h1 className="title">Recipe Book</h1>
-                            <h6>Get a taste of what you can find in our venue</h6>
-                            <NavLink to="/" target="_blank" className="square-button">Go to our menu</NavLink>
+                            <h6>Crea tus nuevas recetas con recipe-book</h6>
+                            <NavLink to="/" className="square-button">visita el menu</NavLink>
                         </div>
                     </div>
                     <div>
                         <div className="fondo02 fondo">
                             <h2>New Categories</h2>
-                            <h6>Learn how to cook like a pro in our blog</h6>
-                            <NavLink to="/category" target="_blank" className="square-button">Go to our category</NavLink>
+                            <h6>encuentra millones de recetas dentro de nuestras categorias</h6>
+                            <NavLink to="/category" className="square-button">ir a nuestras categorias</NavLink>
                         </div>
                     </div>
                     <div>
                         <div className="fondo03 fondo">
                             <h2>New Collections</h2>
-                            <h6>We use 4 classes of chesse, jalapeños, cream and magma sauce</h6>
-                            <NavLink to="/collection" target="_blank" className="square-button">Go to our collection</NavLink>
+                            <h6>descubre las collectiones de recetas</h6>
+                            <NavLink to="/" className="square-button">ir a nuestras colecciones</NavLink>
                         </div>
                     </div>
                 </Slider>

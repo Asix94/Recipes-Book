@@ -54,8 +54,6 @@ class Main extends Component {
 
     render() {
         return (
-            <div>
-
                 <Switch>
 
                     <Route exact path="/" render={() => (
@@ -136,8 +134,6 @@ class Main extends Component {
                     }
 
                 </Switch>
-
-            </div>
         );
     }
 }

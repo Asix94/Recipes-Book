@@ -20,7 +20,6 @@ class FormRecipe extends Component {
             region: '',
             image: '',
             observation: '',
-            elaboration: '',
             video: '',
             countIngredient: 0,
             countElaboration: 0
@@ -47,11 +46,11 @@ class FormRecipe extends Component {
         const elaborations = []
 
         var arrElaborations = Object.keys(this.state).filter((prop) => {
-            return prop.indexOf("elaborations") > -1
+            return prop.indexOf("elaboration") > -1
         })
 
-        for (let i = 0; i < arrElaborations.length; i++){
-            elaborations.push(this.state[arrElaborations[i]])
+        for (let j = 0; j < arrElaborations.length; j++){
+            elaborations.push(this.state[arrElaborations[j]])
         }
 
         api.createRecipe(this.state.title, this.state.category, this.state.image, this.state.video, ingredients, elaborations, this.state.dificulty, this.state.preparation, this.state.region, this.state.seasson, this.state.observation, storage.getToken())
@@ -88,43 +87,43 @@ class FormRecipe extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="container mrg130">
                 <section>
                     <h1>Crea tu receta</h1>
 
                     <div className="row">
                         <div className="col-md-6">
-                            <label className="mgb">Title</label>
+                            <label className="mgb">Titulo</label>
                             <input type="text" className="form-control mgb" name="title" id="title" placeholder="title" required onChange={this.InputValue} value={this.state.title} />
                         </div>
                         <div className="col-md-6">
-                            <label className="mgb">Image (Inserta la url de la imagen)</label>
+                            <label className="mgb">Imagen (Inserta la url de la imagen)</label>
                             <input type="text" className="form-control mgb" name="image" id="image" placeholder="image" required onChange={this.InputValue} value={this.state.image} />
                         </div>
                         <div className="col-md-12">
-                            <label className="mgb">Category</label>
+                            <label className="mgb">Categoría</label>
                             <select name="category" className="form-control mgb" onChange={this.InputValue}>
                                 <option value="" selected="true" disabled>Categoría</option>
                                 <option value="Ensaladas">Ensaladas</option>
                                 <option value="Verduras">Verduras</option>
                                 <option value="Legumbres">Legumbres</option>
                                 <option value="Arroces">Arroces</option>
-                                <option value="Pastas y Pizzas">Pastas y Pizzas</option>
-                                <option value="Sopas, Purés y Cremas">Sopas, Purés y Cremas</option>
+                                <option value="Pastas">Pastas y Pizzas</option>
+                                <option value="Sopas">Sopas, Purés y Cremas</option>
                                 <option value="Huevos">Huevos</option>
-                                <option value="Tapas y Pintxos">Tapas y Pintxos</option>
+                                <option value="Tapas">Tapas y Pintxos</option>
                                 <option value="Carnes">Carnes</option>
-                                <option value="Pescados y mariscos">Pescados y mariscos</option>
+                                <option value="Pescados">Pescados y mariscos</option>
                                 <option value="Postres">Postres</option>
-                                <option value="Bebidas y Cocteles">Bebidas y Cocteles</option>
-                                <option value="Salsas y bases">Salsas y bases</option>
+                                <option value="Bebidas">Bebidas y Cocteles</option>
+                                <option value="Salsas">Salsas y bases</option>
                                 <option value="Otros">Otros</option>
                             </select>
                         </div>
                         <div className="col-md-6">
-                            <label className="mgb">Dificulty</label>
+                            <label className="mgb">Dificultad</label>
                             <select name="dificulty" className="form-control mgb" onChange={this.InputValue}>
-                                <option value="" selected="true" disabled>Dificulty</option>
+                                <option value="" selected="true" disabled>Dificultad</option>
                                 <option value="facil">Facil</option>
                                 <option value="intermedia">Intermedia</option>
                                 <option value="dificil">Dificil</option>
@@ -132,9 +131,9 @@ class FormRecipe extends Component {
                             </select>
                         </div>
                         <div className="col-md-6">
-                            <label className="mgb">Preparation</label>
+                            <label className="mgb">Preparacion</label>
                             <select name="preparation" className="form-control mgb" onChange={this.InputValue}>
-                                <option value="" selected="true" disabled>Preparation</option>
+                                <option value="" selected="true" disabled>Preparacion</option>
                                 <option value="Menos de 15 minutos">Menos de 15 minutos</option>
                                 <option value="Entre 15 y 30 minutos">Entre 15 y 30 minutos</option>
                                 <option value="Entre 30 minutos y 1 hora">Entre 30 minutos y 1 hora</option>
@@ -142,7 +141,7 @@ class FormRecipe extends Component {
                             </select>
                         </div>
                         <div className="col-md-6">
-                            <label className="mgb">Seasson</label>
+                            <label className="mgb">Temporada</label>
                             <select name="seasson" className="form-control mgb" onChange={this.InputValue}>
                                 <option value="" selected="true" disabled>Temporada</option>
                                 <option value="Primavera">Primavera</option>
@@ -164,19 +163,19 @@ class FormRecipe extends Component {
                             </select>
                         </div>
                         <div className="col-md-6">
-                            <label className="mgb">Ingredients</label>
+                            <label className="mgb">Ingredientes</label>
                             <input type="text" className="form-control mgb" name="ingredients0" id="ingredients0" placeholder="ingredients" required onChange={this.InputValue} />
                                 {this.ingredients()}
                             <button className="btn btn-lg btn-primary btn-block mgb" onClick={e => { e.preventDefault(); this.moreIngredients() }}>Añadir ingrediente</button>
                         </div>
                         <div className="col-md-6">
-                            <label className="mgb">Elaboration</label>
-                            <input type="text" className="form-control mgb" name="elaboration" id="elaboration" placeholder="elaboration" required onChange={this.InputValue} />
+                            <label className="mgb">Elaboracion</label>
+                            <input type="text" className="form-control mgb" name="elaboration0" id="elaboration0" placeholder="elaboration" required onChange={this.InputValue} />
                                 {this.elaborations()}
                             <button className="btn btn-lg btn-primary btn-block mgb" onClick={e => { e.preventDefault(); this.moreElaborations() }}>Añadir elaboracion</button>
                         </div>
                         <div className="col-md-12">
-                            <label className="mgb">Observation</label>
+                            <label className="mgb">Observacion</label>
                             <textarea rows="4" className="form-control mgb" name="observation" id="observation" placeholder="observation" required onChange={this.InputValue} />
                         </div>
                     </div>

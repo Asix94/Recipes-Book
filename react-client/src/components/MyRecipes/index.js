@@ -15,7 +15,6 @@ class MyRecipes extends Component {
 
     componentDidMount(){
 
-        window.scrollTo(0, 0)
         api.listMyRecipes(storage.getToken()).then(res => res.data).then(recipes => this.setState({recipes}))
     }
 
@@ -98,17 +97,20 @@ class MyRecipes extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="container mrg130">
                 <section>
-                    <h1>My Recipes</h1>
+                    <h1>Mis Recetas</h1>
+
+                    {(this.state.recipes.length)
+                    ?
                     <table className="table">
                         <thead>
                             <tr>
-                                <td>Name</td>
-                                <td>Category</td>
-                                <td>Dificulty</td>
-                                <td>Update</td>
-                                <td>Remove</td>
+                                <td>Nombre</td>
+                                <td>Categorias</td>
+                                <td>Dificultad</td>
+                                <td>Actualizar</td>
+                                <td>Eliminar</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -118,13 +120,18 @@ class MyRecipes extends Component {
                                         <td><NavLink to={"/recipe/" + recipe.category + "/" + recipe._id}>{recipe.title}</NavLink></td>
                                         <td>{recipe.category}</td>
                                         <td>{recipe.dificulty}</td>
-                                        <td><button className="btn" type="submit" onClick={e => { e.preventDefault(); this.swalRecipe(recipe) }}>Update</button></td>
-                                        <td><button className="btn" type="submit" onClick={e => { e.preventDefault(); this.removeRecipe(recipe._id) }}>Remove</button></td>
+                                        <td><button className="btn" type="submit" onClick={e => { e.preventDefault(); this.swalRecipe(recipe) }}>Actualizar</button></td>
+                                        <td><button className="btn" type="submit" onClick={e => { e.preventDefault(); this.removeRecipe(recipe._id) }}>Eliminar</button></td>
                                     </tr>
                                 )
                             })}
                         </tbody>
                     </table>
+                    :
+                    <div>
+                        <h2>No hay recetas</h2>
+                    </div>
+                    }
                 </section>
             </div>
         )

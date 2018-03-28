@@ -19,15 +19,18 @@ class MyFollowRecipes extends Component{
 
     render(){
         return(
-            <div className="container">
+            <div className="container mrg130">
                 <section>
-                    <h1>My Follow Recipes</h1>
+                    <h1>Mis Recetas Favoritas</h1>
+
+                    {(this.state.recipes.length)
+                    ?
                     <table className="table">
                         <thead>
                             <tr>
-                                <td>Name</td>
-                                <td>Category</td>
-                                <td>Dificulty</td>
+                                <td>Nombre</td>
+                                <td>Categoria</td>
+                                <td>Dificultad</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,6 +45,11 @@ class MyFollowRecipes extends Component{
                             })}
                         </tbody>
                     </table>
+                    :
+                    <div>
+                        <h2>No hay recetas</h2>
+                    </div>
+                    }
                 </section>
             </div>
         )

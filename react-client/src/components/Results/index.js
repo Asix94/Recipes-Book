@@ -13,7 +13,6 @@ class Results extends Component {
 
     componentDidMount() {
 
-        window.scrollTo(0, 0)
         api.searchRecipes(this.props.match.params.query).then(res => res.data).then(search => this.setState({ search }))
     }
 
@@ -25,12 +24,14 @@ class Results extends Component {
     render() {
         return (
 
-            <div className="container">
+            <div className="container mrg130">
 
                 <section>
 
-                    <h2 className="title-3">Search Recipe</h2>
+                    <h2 className="title-3">Recetas Encontradas</h2>
 
+                    {(this.state.search.length)
+                    ?
                     <div className="row">
                         <div className="inside">
                             {this.state.search.map((search, index) => {
@@ -40,6 +41,11 @@ class Results extends Component {
                             })}
                         </div>
                     </div>
+                    :
+                    <div>
+                        <h2>No hay resultados</h2>
+                    </div>
+                    }
 
                 </section>
 

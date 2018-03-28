@@ -8,7 +8,7 @@ class Home extends Component {
 
     render() {
         return (
-            <div>
+            <div className="mrg130">
                 <main>
                     <Carousel />
 
@@ -16,7 +16,7 @@ class Home extends Component {
 
                         <section>
 
-                            <h2 className="title-3">Latest Recipe</h2>
+                            <h2 className="title-3">Ultimas Recetas</h2>
 
                             <div className="row">
                                 <div className="inside">
@@ -32,7 +32,7 @@ class Home extends Component {
 
                         <section>
 
-                            <h2 className="title-3">Category</h2>
+                            <h2 className="title-3">Categorias</h2>
 
                             <div className="row">
                                 {this.props.category.slice(0, 6).map((category,index) => {
@@ -45,7 +45,7 @@ class Home extends Component {
                         </section>
 
                         <section>
-                            <h2 className="title-3">Popular Recipe</h2>
+                            <h2 className="title-3">Recetas Populares</h2>
 
                             <div className="row">
                                 <div className="inside">

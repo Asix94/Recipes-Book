@@ -1,26 +1,25 @@
 import React, { Component } from 'react'
 import RecipeBox from '../RecipeBox'
+import './css/main.css'
 
-class DetailsCategory extends Component{
+class DetailsCategory extends Component {
 
-    render(){
-        return(
-            <div>
-                <div className="container">
-                    <section>
-                        <h1>{this.props.match.params.category}</h1>
+    render() {
+        return (
+            <div className="container mrg130">
+                <section>
+                    <h1>{this.props.match.params.category}</h1>
 
-                        <div className="row">
-                            <div className="inside">
-                                {this.props.recipe.map((recipe,index) => {
-                                    return(
-                                        (recipe.category === this.props.match.params.category) ? <RecipeBox recipe={recipe} key={index}/> : ''
-                                    )
-                                })}
-                            </div>
+                    <div className="row">
+                        <div className="inside">
+                            {this.props.recipe.map((recipe, index) => {
+                                return (
+                                    (recipe.category === this.props.match.params.category) ? <RecipeBox recipe={recipe} key={index} /> : ''
+                                )
+                            })}
                         </div>
-                    </section>
-                </div>
+                    </div>
+                </section>
             </div>
         )
     }
