@@ -1,27 +1,38 @@
 # Recipes book
 
-Proyect information 
+A web app to share your favorite recipes with your friends and find diferents recipes around the world
 
-## Data Model
+## Functional Description
 
-Users and Recipes
+![Use Case](desing/uml/UML_Recipes2.png)
+
+## Show Functional
+
+[Recipe-book demo](http://recipe-book.surge.sh)
+
+## Tecnical Description
+
+### Data Model
 
 ![Data Model](desing/model-data/Data_Model_2.png)
 
-## Mockups
+### Block Model
 
-My firt web mockup
+![Block Model](desing/model-data/Block_Model.png)
 
-![Home](desing/mockups/Home.png) 
-![Category](desing/mockups/Category.png)
-![Collections](desing/mockups/Collections.png)
-![Recipes](desing/mockups/Recipe.png)
+## Tecnologies
 
-## UML
+- HTML
+- CSS
+- BOOTSTRAP
+- Mocha
+- React 
+- Node
+- Moongose
+- Heroku
+- Surge
 
-![Use Case](desing/uml/UML_Recipes.png)
-
-## Time Line
+## Planing Description
 
 ![Diagram Time](desing/Flow-time/Recipes_Book.png)
 
