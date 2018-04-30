@@ -12,7 +12,7 @@ module.exports = {
                 if(!user) throw Error('username and/or password wrong')
 
                 return user
-            })
+            }) 
     },
 
     listUsers() {

@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const router = require('./routes')
 
-const mongo = {
+const mongo = { 
     host: process.env.MONGO_HOST,
     port: process.env.MONGO_PORT,
     database: process.env.MONGO_DB

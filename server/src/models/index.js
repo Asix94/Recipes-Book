@@ -7,4 +7,4 @@ module.exports = {
     User: mongoose.model('User', User),
     Category: mongoose.model('Category', Category),
     Topic: mongoose.model('Topic', Topic)
-}
+} 

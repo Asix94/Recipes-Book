@@ -4,13 +4,13 @@ const rp = require('request-promise')
 
 const api = {
 
-    _baseUrl(){
+    _baseUrl(){ 
         //return 'https://radiant-tundra-87476.herokuapp.com/api'
         return `${this.protocol}://${this.host}:${this.port}/api`
     },
 
     _call(method, path, body, token){
-        const options = {
+        const options = { 
             method,
             url: `${this._baseUrl()}/${path}`,
             json: true
